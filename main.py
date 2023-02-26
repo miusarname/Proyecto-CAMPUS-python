@@ -26,9 +26,20 @@ class UserInputField(UserControl):
                     alignment=alignment.center,
                     data=label,
                     on_click=None,
-                    content=Text(label[index],size=9,weight="bold")
+                    content=Text(label[index],size=9,weight="bold"
+                    ),
                 )
             )
+        return Row(
+        vertical_alignment=CrossAxisAlignment.CENTER,
+        alignment=MainAxisAlignment.END,
+        spacing=2,
+        opacity=1,
+        animate_opacity=200,
+        offset=transform.Offset(0.35, 0),
+        animate_offset=animation.Animation(400,'decelerate'),
+        controls=[__]
+        )
 
 
     def build(self):
@@ -62,6 +73,7 @@ class UserInputField(UserControl):
                 ]
             )
         )
+    
 
 
 """ Animations """
