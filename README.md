@@ -8,7 +8,7 @@ This is a recommended project to be done with Flet & python from CAMPUS
 
 This consists of creating a login "page" using python and Flet
  
-<code><img height="400" src="https://media.publit.io/file/dasdasdasdsad.png"></code>
+<code><img height="550" src="https://media.publit.io/file/dasdasdasdsad.png"></code>
 
 
 
