@@ -12,6 +12,25 @@ class UserInputField(UserControl):
         self.hide=hide
         super().__init__()
 
+
+
+    def prefix_email_container(self):
+        email_labels=["@gmail.com","@hotmail.com","@outlook.es"]
+        label_title=["GMAIL","MAIL","MAIL2"]
+        __=Row(spacing=1,alignment=MainAxisAlignment.END)
+        for index,label in enumerate(email_labels):
+            __.controls.append(
+                Container(
+                    width=45,
+                    height=30,
+                    alignment=alignment.center,
+                    data=label,
+                    on_click=None,
+                    content=Text(label[index],size=9,weight="bold")
+                )
+            )
+
+
     def build(self):
         return Container(
             width=320, height=40,border=border.only(bottom=border.BorderSide(0.5,"white54")),
@@ -28,13 +47,14 @@ class UserInputField(UserControl):
                         border_color="transparent",
                         bgcolor="transparent",
                         height=20,
-                        width=200,
+                        width=285,
                         text_size=12,
                         content_padding=3,
                         cursor_color="white",
                         hint_text=self.text_hint,
                         hint_style=TextStyle(size=11),
                         password=self.hide,
+                        on_change=None
 
 
 
