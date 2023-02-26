@@ -6,10 +6,11 @@ from math import pi
 """ Inputs """
 
 class UserInputField(UserControl):
-    def __init__(self,icon_name,text_hint,hide):
+    def __init__(self,icon_name,text_hint,hide,function_emails:bool):
         self.icon_name=icon_name
         self.text_hint=text_hint
         self.hide=hide
+        self.function_emails=function_emails
         super().__init__()
 
 
@@ -26,7 +27,7 @@ class UserInputField(UserControl):
                     alignment=alignment.center,
                     data=label,
                     on_click=None,
-                    content=Text(label[index],size=9,weight="bold"
+                    content=Text(label_title[index],size=9,weight="bold"
                     ),
                 )
             )
@@ -34,13 +35,21 @@ class UserInputField(UserControl):
         vertical_alignment=CrossAxisAlignment.CENTER,
         alignment=MainAxisAlignment.END,
         spacing=2,
-        opacity=1,
+        opacity=0,
         animate_opacity=200,
         offset=transform.Offset(0.35, 0),
         animate_offset=animation.Animation(400,'decelerate'),
         controls=[__]
         )
 
+    def get_prefix_emails(self,e):
+
+        if self.function_emails:
+
+            email=self.controls[0].content.controls[1].value
+            print(email)
+            
+        pass
 
     def build(self):
         return Container(
@@ -65,7 +74,10 @@ class UserInputField(UserControl):
                         hint_text=self.text_hint,
                         hint_style=TextStyle(size=11),
                         password=self.hide,
-                        on_change=None
+                        on_change=lambda e:self.get_prefix_emails(
+                            e
+                        ),
+                        on_blur=None
 
 
 
@@ -132,9 +144,9 @@ def main(page: Page):
                             ]
                         ),
                         Divider(height=20, color="transparent"),
-                        UserInputField(icons.PERSON_ROUNDED,"Email",False),
+                        UserInputField(icons.PERSON_ROUNDED,"Email",False,True),
                         Divider(height=20, color="transparent"),
-                        UserInputField(icons.LOCK_OPEN_ROUNDED,"Password",True)
+                        UserInputField(icons.LOCK_OPEN_ROUNDED,"Password",True,False)
                     ]
                 )
             )
