@@ -3,7 +3,48 @@ from flet import *
 import time
 from math import pi
 
-"""Animations """
+""" Inputs """
+
+class UserInputField(UserControl):
+    def __init__(self,icon_name,text_hint,hide):
+        self.icon_name=icon_name
+        self.text_hint=text_hint
+        self.hide=hide
+        super().__init__()
+
+    def build(self):
+        return Container(
+            width=320, height=40,border=border.only(bottom=border.BorderSide(0.5,"white54")),
+            content=Row(
+                spacing=20,
+                vertical_alignment=CrossAxisAlignment.CENTER,
+                controls=[
+                    Icon(
+                        name=self.icon_name,
+                        size=14,
+                        opacity=0.85
+                    ),
+                    TextField(
+                        border_color="transparent",
+                        bgcolor="transparent",
+                        height=20,
+                        width=200,
+                        text_size=12,
+                        content_padding=3,
+                        cursor_color="white",
+                        hint_text=self.text_hint,
+                        hint_style=TextStyle(size=11),
+                        password=self.hide,
+
+
+
+                    )
+                ]
+            )
+        )
+
+
+""" Animations """
 
 
 class AnimatedBox(UserControl):
@@ -45,10 +86,23 @@ def main(page: Page):
                         Divider(height=40, color='transparent'),
                         Stack(
                             controls=[
-                               AnimatedBox("#e9665a","#23262a" ,0),
-                               AnimatedBox("#7df6dd","#23262a",10 )
+
                             ]
-                        )
+                        ),
+                        Divider(height=20, color="transparent"),
+                        Column(
+                            horizontal_alignment=CrossAxisAlignment.CENTER,
+                            alignment=MainAxisAlignment.CENTER,
+                            spacing=5,
+                            controls=[
+                                Text("Sign In Below", size=22),
+                                Text("Advanced python-flet UI Concepts", size=13)
+                            ]
+                        ),
+                        Divider(height=20, color="transparent"),
+                        UserInputField(icons.PERSON_ROUNDED,"Email",False),
+                        Divider(height=20, color="transparent"),
+                        UserInputField(icons.LOCK_OPEN_ROUNDED,"Password",True)
                     ]
                 )
             )
