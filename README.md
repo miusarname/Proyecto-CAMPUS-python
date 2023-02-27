@@ -24,9 +24,6 @@ This consists of creating a login "page" using python and Flet
 
 
 Pdt: The translation into English has been half my own, the other half google translate
-<br>
-hola
-<br/>
-hola
+
 
  
