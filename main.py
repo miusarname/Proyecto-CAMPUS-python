@@ -16,7 +16,7 @@ class UserInputField(UserControl):
 
 
     def prefix_email_container(self):
-        email_labels=["@gmail.com","@hotmail.com","@outlook.es"]
+        email_labels=["@gmail.com","@hotmail.com"]
         label_title=["GMAIL","MAIL","MAIL2"]
         __=Row(spacing=1,alignment=MainAxisAlignment.END)
         for index,label in enumerate(email_labels):
@@ -47,9 +47,23 @@ class UserInputField(UserControl):
         if self.function_emails:
 
             email=self.controls[0].content.controls[1].value
-            print(email)
+            if e.data:
+                if "@gmail.com" in email or "@hotmail.com"in email:
+                    self.controls[0].content.controls[2].offset=transform.Offset(0,0)
+                    self.controls[0].content.controls[2].opacity= 0
+                    self.update()
+                else:
+                    self.controls[0].content.controls[2].offset=transform.Offset(-0.15,0)
+                    self.controls[0].content.controls[2].opacity= 1
+                    self.update()
+            else:
+                self.controls[0].content.controls[2].offset=transform.Offset(0.5,0)
+                self.controls[0].content.controls[2].opacity= 0
+                self.update()
+        else:
+            pass
+    pass
             
-        pass
 
     def build(self):
         return Container(
@@ -74,9 +88,7 @@ class UserInputField(UserControl):
                         hint_text=self.text_hint,
                         hint_style=TextStyle(size=11),
                         password=self.hide,
-                        on_change=lambda e:self.get_prefix_emails(
-                            e
-                        ),
+                        on_change=print("tomado"),
                         on_blur=None
 
 
